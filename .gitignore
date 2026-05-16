@@ -1,0 +1,13 @@
+# .DS_store
+.DS_Store
+
+# Latex ancillary files
+*.aux
+*.bcf
+*.log
+*.synctex.gz
+*.toc
+*.out
+*.blg
+*.run.xml
+*pdf

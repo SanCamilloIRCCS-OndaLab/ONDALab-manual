@@ -1,0 +1,423 @@
+\documentclass[12pt]{article}
+\usepackage[scaled=0.8]{helvet}
+
+%% the file should be rendered with pdflatex
+
+%% THIS SECTION IS THE PREAMBLE
+\usepackage{graphicx}
+\usepackage[latin1]{inputenc}
+\usepackage{tikz}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{titlesec}
+\usepackage{float} % per forzare la posizione di una figura tramite il parametro [h]
+\usepackage[formats]{listings}
+\usetikzlibrary{shapes,arrows}
+\usetikzlibrary{positioning}
+\usepackage{fancyvrb} % to include nice tilde in formulas.
+\usepackage{blindtext}
+%\usepackage{kpfonts}
+\usepackage{fancyvrb}
+\setcounter{tocdepth}{2}
+\usepackage{soul} % to underline and new verse
+\usepackage{lscape}
+\usepackage{adjustbox}
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage{booktabs} % Required for better horizontal rules in tables
+\usepackage{tcolorbox}
+
+
+\usepackage[backend=biber, style=apa]{biblatex}
+\addbibresource{SupplBiblio.bib}
+
+
+
+
+\lstdefineformat{R}{~=\( \sim \)}
+\lstset{basicstyle=\ttfamily, format=R}
+
+
+
+\newcommand{\mybox}[1]{% if you put [2] before this  bracket, the command will expect another argument
+         %\begin{center}%
+
+\noindent
+            \begin{tikzpicture}%
+                \node[rectangle, draw=gray, fill = gray!10 , rounded corners=3pt, inner xsep=10pt, inner ysep=6pt, outer ysep=10pt]{
+                \begin{minipage}{0.90\linewidth}#1\end{minipage}};% notice, instead of gray, you can put #2 if a second argument is expected in the command
+            \end{tikzpicture}%
+         %\end{center}%
+}
+
+
+\newcommand{\Hint}[1]{%
+         %\begin{center}%
+\noindent
+            \begin{tikzpicture}%
+                \node[rectangle, draw=black, rounded corners=3pt, inner xsep=10pt, inner ysep=6pt, outer ysep=10pt]{
+                \begin{minipage}{\linewidth}#1\end{minipage}};%
+            \end{tikzpicture}%
+         %\end{center}%
+}
+
+\newcommand{\mytilde}{$\sim$}
+
+%\begin{document}
+%\blindtext
+%\mybox{\blindtext}{green}
+%\blindtext
+%\mybox{\blindtext}{red}
+%\end{document}
+
+
+
+
+% \setcounter{secnumdepth}{0}
+% The command above change the numbering showed. With 0, only Chapter numbering is showed, with -1. No numbering is showed
+
+%\pgfmathtruncatemacro\distance{1}
+
+%\titleformat{\chapter}{\normalfont\huge}{\thechapter}{20pt}{\huge\it}
+%\setcounter{secnumdepth}{0} % this option removes numbers from TOC
+% be careful to the above command!! hyperref won't work if you use it.
+\setlength{\abovecaptionskip}{25pt plus 3pt minus 2pt} % parametro per distanza caption figure
+
+\newcommand{\code}[1]{\texttt{#1}} 
+\newcommand{\erpR}{\texttt{erpR }} 
+\newcommand{\R}{\texttt{R }} 
+\newcommand{\oq}{``} 
+\newcommand{\cq}{''} 
+\newcommand{\MATLAB}{MATLAB\textsuperscript{\texttrademark}}
+
+\newcommand{\bab}[1]{\textbf{\Large #1}}
+\begin{document}
+  \begin{titlepage}
+    \vspace*{\fill}
+\begin{center}
+
+\begin{figure}
+\includegraphics[scale=0.6]{Figures/ONDA_logo_v12.png}
+\end{figure}
+%\vspace*{1\baselineskip}
+      {\Large \textbf{ONDA Lab Manual}}\\
+      \vspace*{0.5\baselineskip}
+{\normalsize     \textbf{O}pen methodologies for \textbf{N}eurorehabilitation and \textbf{D}ata \textbf{A}nalysis}
+\\
+\vspace*{1\baselineskip}
+      \normalsize{Giorgio Arcara}\\
+\vspace*{3\baselineskip}
+{\normalsize version 0.2}\\
+\vspace*{1\baselineskip}
+ \today
+    \end{center}
+    \vspace*{\fill}
+  \end{titlepage}
+
+
+% AFFILIATIONS
+%%\vspace*{2\baselineskip}
+%%	\emph{\textsuperscript{1}I.R.C.C.S. Fondazione Ospedale San Camillo, Venice Italy}\\
+%%	\emph{\textsuperscript{2} Department of General Psychology, Padua, Italy}
+%    \end{center}
+
+%    \vspace*{\fill}
+%\newpage
+
+
+\tableofcontents
+\newpage
+
+
+\cleardoublepage
+\phantomsection
+%\addcontentsline{toc}{section}{Introduction}
+\section{What This Manual Is For}
+This manual serves as a user guide for being part of the \textbf{ONDA Lab}, whether you're already in it or just joining
+\footnote{This document is inspired by Davide Crepaldi's and Jonathan Peelle Lab manuals. The two manuals are available at \url{https://lrlac.sissa.it/sites/default/files/CrepaldiLabUserGuide.pdf}
+\url{https://github.com/jpeelle/peellelab_manual}}. You are invited to read these pages if you want to find out what is the philosophy and some of the main principles of the Lab.
+Note that this manual is not intended to provide a detailed description of procedures or workflows (e.g., how to store data or how to use specific equipment). Instead, it offers a general overview of how the Lab operates--both in practical terms and in spirit.
+You may notice occasional shifts between the use of \emph{I} and \emph{we} throughout the text. I've intentionally kept this apparent inconsistency because I believe it reflects our spirit well: running a Lab is, above all, a collaborative effort.
+
+
+\subsection{Lab History}
+The \textbf{ONDA} Lab ( \textbf{O}pen methodologies for \textbf{N}eurorehabilitation and \textbf{D}ata \textbf{A}nalysis) was officially established as part of IRCCS San Camillo in April 2025. Its foundations lie in the Neurophysiology Lab, which I led for six years.
+The current identity and mission of the Lab are deeply shaped by the contributions of both current and former members and collaborators. including trainees. 
+
+The current name of the Lab -ONDA- was chosen with purpose. We wanted a name that not only reflects the scope of our research but also able to capture the spirit of our team.
+``Onda'' means ``wave'' in Italian, and studying waves -particularly brain waves- has been, is, and will continue to be a central part of our work. The name also reminds the Lab location, in Lido of Venice, between the Venice Lagoon and the Adriatic sea.
+The Lab's logo includes three light blue ``n''s, each representing a key pillar of our research: Neurophysiology, Neuropsychology, and Neuroscience. These are all integrated within the broader context of Neurorehabilitation, symbolized by the dark blue ``n'' that surrounds them.
+One might think that the acronym is missing an important letter --an ``M" for methodology--but this omission actually reflects how methodology works: it's present and influential, even if it's not immediately visible or explicitly acknowledged.
+
+
+
+
+
+\subsection{Lab Philosophy}
+The core philosophy of the Lab is to do good science while genuinely enjoying our work. There are several keywords that describe well the facets of the Lab philosophy, they will be in bold in the next lines.\\
+We strive to create an \textbf{informal}, welcoming environment that fosters collaboration, sharing, and the free exchange of ideas.
+Since 2007, I've been deeply inspired by the principles of Open Science, and I've always aimed to pass these values on to the team, making them a natural part of our daily life.
+One direct outcome of this mindset is our strong emphasis on \textbf{teamwork}. We work together while respecting each person's individuality. You can expect to ask for help-and to be asked for help-in return. Mutual support is a given.
+Another fundamental value of our Lab is \textbf{kindness}. We intentionally avoid toxic, hyper-competitive dynamics. Over the years, we've shown that it's entirely possible to maintain strong scientific output and build a solid reputation without compromising on empathy and respect.
+We also believe that good \textbf{planning and organization} are essential, not just for productivity, but to make space for creativity, free time, and rest. I strongly believe you don't need to overwork to be effective, especially when you're part of a close-knit, supportive team.
+Finally, we are always open to constructive feedback as a means of continuous \textbf{self-improvement}. Don't expect ideas or procedures to remain fixed: if something can be improved, we're always open to change.
+The Lab should be a safe and meaningful place-a space where you can pursue your passions. Despite the inevitable daily challenges and sometimes boring tasks, the overall experience should brings you satisfaction and joy in what you're doing.
+
+%\subsection*{Lab Topics}
+\pagebreak
+
+\subsection{Website}
+
+All Lab activities and publications are documented and publicly 
+available on the Lab website:
+\begin{center}
+    \url{https://sancamilloirccs-ondalab.github.io}
+\end{center}
+
+Check it regularly: it is the official record of the Lab's output.
+
+\section{Lab Life}
+\subsection{Members and Collaborators}
+
+The Lab has two categories of people:
+
+\begin{itemize}
+    \item \textbf{Members}: people formally affiliated with the Lab 
+    at IRCCS San Camillo.
+    \item \textbf{Collaborators}: people not formally in the Lab but 
+    actively involved in shared projects. This includes PhD students, 
+    researchers at IRCCS San Camillo outside the Lab, or external 
+    partners.
+\end{itemize}
+
+Becoming a collaborator requires two things: at least one shared 
+project, and a commitment to joining Lab meetings. If both conditions 
+are met, you are welcome! 
+
+\subsection{Lab Hierarchy}
+Even if being informal is an important part of our life, hierarchies are important and I expect everyone to follow them. Respect always anyone (no matter the role) but follow the hierarchies. 
+\begin{enumerate}
+\item Lab head
+\item Post-docs
+\item Phd students
+\item Research assistants
+\item Trainees
+\end{enumerate}
+
+In general, those with higher grades hold greater authority. As a rule of thumb, if you have a question or problem and you believe I'm not the only one who can address it, consider reaching out to someone higher up in the hierarchy.
+A \textbf{Vice Lab Coordinator} is always designated and should be regarded as the main authority in my absence. Other team members may also be assigned specific roles, such as purchase coordinator, liaison for clinical wards, and so on.
+These rules apply to \textbf{Members}. The working relationship with Collaborators is defined case by case.
+
+
+
+\subsection{Expectations}
+This section outlines what I expect from you based on your role in the Lab, as well as what you can expect from me and your colleagues.
+\subsubsection{What I Expect from You}
+
+\paragraph{Everyone}
+\begin{itemize}
+\item Be responsible and do your best to achieve the goals we set together.
+\item Be kind and respectful to everyone (including those outside the Lab).
+\item Reach out to me whenever you encounter a problem.
+\item Support me and the team when circumstances require it.
+\item Inform the coordinator and the people higher in hierarchy whenever there are deviations on the agreed procedures. 
+\end{itemize}
+
+\paragraph{Post-docs}
+\begin{itemize}
+\item Serve as mentors and support younger team members.
+\item Dedicate time for your own professional growth.
+\item Discuss new ideas and projects with me.
+\item Write grant proposals when appropriate.
+\item Act as responsible and engaged members of the scientific community (e.g., peer review, staying informed, etc.)
+\end{itemize}
+
+\paragraph{PhD Students}
+\begin{itemize}
+\item Prioritize your PhD work.
+\item Dedicate time for your own development and learning.
+\item Contact me if you feel stuck in your PhD or if things are not progressing as expected.
+\end{itemize}
+
+\paragraph{Research Assistants}
+\begin{itemize}
+\item Prioritize the projects you have been assigned.
+\item Assist and teach trainees Lab procedures.
+\end{itemize}
+
+\paragraph{Trainees}
+\begin{itemize}
+\item Follow the instructions and the task assigned to you.
+\item Be proactive if you think you need to change your activities or if you want to add some new activities.
+\item Discuss with me any change of program.
+\end{itemize}
+
+\subsubsection{What You Should Expect from Me}
+\begin{itemize}
+\item Genuine care for you, your experience in the Lab, your well-being, and your future.
+\item Organizing Lab activities to achieve our scientific goals with minimal stress.
+\item Active efforts to secure funding to support the Lab and its members.
+\item Time and guidance to help you understand potential next steps in your career.
+\item Continuous generation of new ideas and directions for the Lab.
+\item Space and encouragement for your own ideas.
+\item Support in identifying your strengths and areas where you can grow.
+\end{itemize}
+%\subsection{Lab members}
+
+\subsection{Meeting me}
+
+Although I would like to, I don't follow an ``open door'' policy. Please avoid to knock and ask questions on the spot --even if if it's something quick. I hate to say this, but over the years I've realized that it really is not the best way to work, at least for me.
+Feel free to message me on Slack (preferred), even for a two-minute meeting. I'll let you know when we can talk and I will always find some time for a meeting.
+That said, if something is urgent, don't hesitate to come to me directly or contact me, even if I'm on holiday.
+
+\subsection{Lab meetings}
+
+Lab meetings are important, and I expect everyone to attend, ideally in person. Please take your participation seriously. Even if the meetings are short, they are a key part of our shared life as a group.
+The aim of Lab meetings are:
+\begin{itemize}
+\item stay connected with all Lab members.
+\item discuss on a specific topic of interest (e.g. an article, a blog post, etc.).
+\item discusss for potentials improvements of the Lab.
+\end{itemize}
+There are also informal meetings organized by Lab members specifically for younger colleagues, which I do not attend. Please consider these meetings just as important as our regular monthly Lab meetings.
+Additionally, there are other opportunities for meetings--such as those held by the NICLA group on clinical neuropsychology--that are closely connected to Lab activities.
+
+
+\subsection{Working hours}
+We place great importance on maintaining a healthy balance between work and personal life.
+
+\begin{tcolorbox}[
+    colback=red!5,
+    colframe=red!70!black,
+    boxrule=1pt,
+    leftrule=4pt,
+    arc=2pt,
+colbacktitle=red!70!black,   % title bar background
+    title={\textbf{Important}},
+    fonttitle=\bfseries\color{red!0!white}
+]
+You should not expect requests from me (and 
+likewise, no Lab member should expect this from others) that require 
+work in the late afternoon, evening, or during weekends.
+\end{tcolorbox}
+
+Working hours may vary depending on your role, but if anything is unclear, please feel free to discuss it with me.
+I may occasionally reply to or send emails at unusual hours or on weekends. If that happens, please don't assume I expect you to do the same.
+Importantly, please do not send me materials for review right before the weekend with the expectation that I will look at them by Monday--probably I won't be able to do that. Of course, exceptions can be made in cases of true urgency, but as mentioned earlier, we strongly value planning.
+Plan your deadlines in advance so that I have time to review your work.  
+See also Section~\ref{subsec:Articles}.
+
+
+\addcontentsline{toc}{section}{Science}
+\section*{Science}
+
+\subsection{Doing science in the Lab}
+As a research Laboratory most of our activities are related to do science. This consists of:
+\begin{itemize}
+\item studying the existing literature (book, scientific articles, but also tutorial from blog posts or any other valuable source).
+\item presenting studies to the Ethics Committee.
+\item planning and running experiments.
+\item analyzing data (we spent a lot of time in analyzing data.
+\item writing scientific articles
+\item handle all the administrative tasks related to scientific activities (e.g., purchasing, reporting, etc.).
+\item find moments to generate new ideas or plans.
+\end{itemize}
+
+\subsection{Lab procedures}
+This manual is not meant to include all Lab procedures and rules, but just to give an overview on how we are organized.
+Please refer to the Lab procedures manuals that can be found into the ONDA Lab shared Garrbox folder (if you are a trainee, you will given access to the folder).
+
+\subsection{Software}
+
+The use of software is a fundamental aspect of life in the Lab, so it's important to clarify some general guidelines.
+Whenever free and open-source alternatives are available, we prefer to use them (e.g., Inkscape instead of Illustrator, LibreOffice instead of Microsoft Office). 
+This helps reduce Lab expenses and promotes accessibility. 
+However, we are not opposed to using commercial software when it offers a clear advantage over free alternatives, or when its use is required for specific purposes.
+The main software tools we currently use include:
+
+\begin{itemize}
+\item \textbf{Garrbox} -- for sharing Lab documents and files. It is a cloud service similar to Google Drive, provided by the institute and compliant with privacy regulations.
+\item \textbf{MATLAB} and toolboxes -- for neurophysiological data analysis.
+\item \textbf{Python} and its toolboxes -- also for neurophysiological analysis (a recent addition we are all currently learning).
+\item \textbf{R} -- for statistical analysis.
+\item \textbf{GitHub} -- for version control and collaborative software development. 
+
+\begin{tcolorbox}[
+    colback=red!5,
+    colframe=red!70!black,
+    boxrule=1pt,
+    leftrule=4pt,
+    arc=2pt,
+colbacktitle=red!70!black,   % title bar background
+    title={\textbf{Important}},
+    fonttitle=\bfseries\color{red!0!white}
+]
+All collaborative projects (and so most of the projects) are expected to be stored at the Lab github page:  \\
+\textbf{\url{https://github.com/SanCamilloIRCCS-OndaLab}}
+\end{tcolorbox}
+
+
+
+\item \textbf{Google Docs} or \textbf{GARR OnlyOffice} -- for manuscript writing and collaborative editing.
+\item \textbf{Slack} -- for Lab communications.
+\item \textbf{Zotero} -- for reference management and organizing scientific literature.
+\item \ldots
+\end{itemize}
+
+\subsection{Studies}
+The Lab conducts several Studies, that are typically assigned to a main referent. I will keep track of all studies and ensure things are going smooth, and I will assign
+tasks. Sometimes a study can have assigned referent that can assign tasks in turn to people (e.g. a Post-doc that gives task to a Research Assistant).
+
+\subsection{Data Management}
+Data are fundamental for our research and we must treat as our more precious thing. All data must be stored in the IRCCS computer and server, possibly in dedicated directory.
+Typically all Raw Data are in a \texttt{Raw\_data} folder contained in the folder dedicated to that specific study. In the case data are very large (e.g. MEG or EEG) they are stored in a shared \texttt{Raw\_data} folder. As a general rule all data must be easily traceable.
+
+Currently we store all data into two workstation: \emph{wvespucci} and \emph{wmalaspina}. 
+If data are collected on some specific devices, they should be moved asap into these two workstations (so they are regularly backupped).
+
+\subsection{Code Management}
+At the time of writing of this document, we are in the middle of a revision of how code is organized.
+Currently all code is organized into dedicated folders in the two workstations \emph{wvespucci} and \emph{wmalaspina} into \texttt{Analysis\_scripts\_and\_code} folder present in each workstation.
+
+\subsection{Open Science and sharing}
+ONDA Lab embraces many Open Science principles as part of our everyday work culture. Among these, the most important value for us is sharing.  
+By ``sharing'',  we don't just mean making code available once a paper is published--we mean sharing as much as possible throughout the entire research process: code, knowledge, ideas, and intuitions.  
+All code should be considered shareable at any stage of development. We also encourage you to store other relevant materials (data, drafts, notes) in shared folders whenever possible.
+Sharing also means being proactive in discussing your ideas, projects, and intuitions with others in the Lab.
+
+
+
+\subsection{Work to be reviewed (Articles, Posters, and Presentations)}
+\label{subsec:Articles}
+If you fall into one of the categories of people required to produce scientific outputs, remember that you are part of a Lab. This means collaboration and communication are key. Here are the general rules I ask you to follow:
+
+\begin{itemize}
+\item For all abstracts, scientific articles, and posters, please send me a draft so I can review it. \\
+If possible, share your idea with me before you start writing, so we can align on a shared plan.
+\item Avoid last-minute requests. Plan ahead and give me at least:
+  \begin{itemize}
+    \item 24 hours for abstracts
+    \item A few days for presentations, posters, or code review
+    \item At least two weeks for full articles
+  \end{itemize}
+\item For your personal activities in which you don't represent the Lab (e.g., lectures or lessons you've been invited to give), feel free to ask for my input or advice--but don't feel obligated to seek my approval.
+\end{itemize}
+
+\subsection{Other}
+
+\subsubsection{Recommendation Letters}
+
+I'm happy to write recommendation letters, but please keep in mind that they take time and I want to write them myself.  
+
+If you're planning to request a letter, please consider the following:
+
+\begin{itemize}
+\item You will be asked to help me retrieve all relevant dates and details related to our professional relationship.
+\item I will always write letters with complete honesty. Please don't expect me to include anything I don't genuinely believe or know about you.
+\end{itemize}
+
+
+
+\end{document}
+
+  
