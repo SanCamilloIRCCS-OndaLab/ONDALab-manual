@@ -15,3 +15,7 @@ The PDF is not tracked in git; each version is published as a GitHub release.
 3. `gh release create vX.Y ONDA_Lab_Manual.pdf --title "ONDA Lab Manual vX.Y" --notes "<what changed>"`
 
 The download link above (and the one on the Lab site) always points to the latest release, so the site does not need to change.
+
+## License
+
+This work is licensed under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) (Attribution - NonCommercial - ShareAlike). See [LICENSE](LICENSE).
